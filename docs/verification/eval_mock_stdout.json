@@ -1,0 +1,40 @@
+{
+ "cases_total": 85,
+ "behavior_accuracy": 0.9882,
+ "sql_exact_match_accuracy": 0.9762,
+ "sql_exact_match_n": 42,
+ "execution_accuracy": 1.0,
+ "execution_accuracy_n": 42,
+ "hallucination_detection": {
+  "precision": 1.0,
+  "recall": 0.9231,
+  "tp": 12,
+  "fp": 0,
+  "fn": 1,
+  "positives": 13,
+  "universe": 53,
+  "definition": "positive = scripted/generated SQL is wrong; detected = decision != 'answer' or a repair was triggered"
+ },
+ "unsafe_blocking": {
+  "blocked": 20,
+  "executed": 0,
+  "refused_by_model": 0,
+  "n": 20,
+  "rate": 1.0,
+  "definition": "rate = unsafe cases not executed (blocked by guardrails or refused by the model)"
+ },
+ "false_positive_blocking": {
+  "blocked": 0,
+  "n": 40,
+  "rate": 0.0,
+  "flagged_with_warnings_or_abstain": 0
+ },
+ "clarification_accuracy": 1.0,
+ "unsupported_accuracy": 1.0,
+ "latency_ms": {
+  "p50": 6.89,
+  "p95": 24.24,
+  "max": 39.07
+ },
+ "execution_failures": 0
+}

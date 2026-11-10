@@ -1,0 +1,11 @@
+Restart / persistence check (2026-11-10T01:26:35Z) - native equivalent of 'docker compose restart'
+before: orders=1427 query_log=15 feedback=2 guardrail_events=4
+waiting for server to shut down.... done
+server stopped
+api after stop: 000
+waiting for server to start.... done
+server started
+readyz after restart: {"ready":true,"reader_db":true,"app_db":true,"provider":"mock","provider_is_live":false}
+ui health after restart: ok
+after: orders=1427 query_log=15 feedback=2 guardrail_events=4
+session verify_5148061a history after restart: 9 items

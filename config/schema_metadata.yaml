@@ -1,0 +1,180 @@
+# Curated, human-reviewed schema metadata. Treated as trusted configuration (unlike database content).
+# - descriptions / glossary enrich the prompt
+# - sensitive columns are removed from the allowlist and never sampled
+# - categorical_values lists APPROVED example values only (no free sampling of sensitive data)
+data_timespan:
+  start: "2024-01-01"
+  end: "2025-12-31"
+  note: "Orders, payments and refunds cover 2024-01-01..2025-12-31. Relative dates ('last month') are ambiguous."
+
+tables:
+  regions:
+    description: "Sales regions."
+    columns:
+      region_id: "Region identifier."
+      name: "Region name."
+    categorical_values:
+      name: ["North America", "Europe", "Middle East & Africa", "Asia Pacific", "Latin America"]
+  customers:
+    description: "Customers who placed orders. Contact details are restricted."
+    columns:
+      customer_id: "Customer identifier."
+      first_name: "Given name."
+      last_name: "Family name."
+      email: "Email address (SENSITIVE)."
+      phone: "Phone number (SENSITIVE)."
+      city: "Customer city."
+      country: "Customer country."
+      region_id: "Region of the customer."
+      segment: "Customer segment."
+      signup_date: "Date the customer account was created."
+    sensitive: [email, phone]
+    categorical_values:
+      segment: ["consumer", "corporate", "small_business"]
+      country: ["USA", "Canada", "Netherlands", "Germany", "Spain", "France", "UAE", "Kuwait", "Libya", "Nigeria", "Singapore", "Australia", "Japan", "Colombia", "Chile", "Mexico"]
+  categories:
+    description: "Product categories; top-level categories have parent_category_id NULL."
+    columns:
+      category_id: "Category identifier."
+      name: "Category name."
+      parent_category_id: "Parent category (NULL for top-level)."
+    categorical_values:
+      name: ["Electronics", "Home & Kitchen", "Outdoors", "Office", "Laptops", "Audio", "Cookware", "Camping", "Furniture"]
+  products:
+    description: "Product catalog."
+    columns:
+      product_id: "Product identifier."
+      name: "Product name."
+      category_id: "Category of the product."
+      unit_price: "Current list price in USD."
+      unit_cost: "Unit cost in USD (for margin)."
+      is_active: "Whether the product is currently sold."
+      launched_on: "Launch date."
+  orders:
+    description: "Customer orders, one row per order."
+    columns:
+      order_id: "Order identifier."
+      customer_id: "Customer who placed the order."
+      order_date: "Date the order was placed."
+      status: "Fulfilment status."
+      channel: "Sales channel."
+      shipping_cost: "Shipping charged in USD."
+    categorical_values:
+      status: ["pending", "shipped", "delivered", "cancelled", "returned"]
+      channel: ["web", "mobile", "store"]
+  order_items:
+    description: "Order line items. Line revenue = quantity * unit_price * (1 - discount)."
+    columns:
+      order_item_id: "Line identifier."
+      order_id: "Parent order."
+      product_id: "Product sold."
+      quantity: "Units sold."
+      unit_price: "Price per unit at time of sale (USD)."
+      discount: "Fractional discount 0..1."
+  payments:
+    description: "Payments captured for non-cancelled orders."
+    columns:
+      payment_id: "Payment identifier."
+      order_id: "Order paid."
+      method: "Payment method."
+      amount: "Amount paid in USD, including shipping."
+      paid_at: "Payment date."
+    categorical_values:
+      method: ["card", "paypal", "bank_transfer", "gift_card"]
+  refunds:
+    description: "Refunds against orders (at most one per order)."
+    columns:
+      refund_id: "Refund identifier."
+      order_id: "Refunded order."
+      amount: "Refunded amount in USD."
+      reason: "Refund reason."
+      refunded_at: "Refund date."
+    categorical_values:
+      reason: ["damaged", "wrong_item", "late_delivery", "changed_mind"]
+  employees:
+    description: "Sales staff. Compensation is restricted."
+    columns:
+      employee_id: "Employee identifier."
+      full_name: "Employee name."
+      job_title: "Job title."
+      region_id: "Region the employee covers."
+      salary: "Annual salary (SENSITIVE)."
+      hired_on: "Hire date."
+    sensitive: [salary]
+    categorical_values:
+      job_title: ["Account Manager", "Sales Associate", "Regional Director", "Support Specialist"]
+
+# Business glossary: term -> definition (+ tables it implies). Used for retrieval and prompting.
+glossary:
+  gross revenue:
+    definition: "SUM(order_items.quantity * order_items.unit_price * (1 - order_items.discount)) over non-cancelled orders."
+    tables: [order_items, orders]
+  net revenue:
+    definition: "Gross revenue minus SUM(refunds.amount) for the same orders."
+    tables: [order_items, orders, refunds]
+  sales:
+    definition: "Synonym of gross revenue unless stated otherwise."
+    tables: [order_items, orders]
+  units sold:
+    definition: "SUM(order_items.quantity) over non-cancelled orders."
+    tables: [order_items, orders]
+  average order value:
+    definition: "Average of payments.amount per paid order."
+    tables: [payments]
+  margin:
+    definition: "SUM(quantity * (unit_price * (1 - discount) - products.unit_cost))."
+    tables: [order_items, products]
+  active product:
+    definition: "products.is_active = TRUE."
+    tables: [products]
+  refund rate:
+    definition: "COUNT(DISTINCT refunds.order_id) / COUNT(DISTINCT orders.order_id) over non-cancelled orders."
+    tables: [orders, refunds]
+
+# Ambiguous terms: when a question uses the term without a qualifier, the system asks for clarification.
+ambiguous_terms:
+  revenue:
+    unless_any: ["gross", "net", "sales", "payment", "paid", "collected"]
+    interpretations:
+      - label: "Gross revenue"
+        description: "Line-item revenue after discounts, excluding cancelled orders."
+      - label: "Net revenue"
+        description: "Gross revenue minus refunds."
+      - label: "Collected payments"
+        description: "Sum of payments.amount (includes shipping)."
+  top customers:
+    unless_any: ["by revenue", "by spend", "by orders", "by number of orders", "order count", "most orders", "spent", "spend"]
+    interpretations:
+      - label: "By total spend"
+        description: "Rank customers by SUM(payments.amount)."
+      - label: "By number of orders"
+        description: "Rank customers by COUNT(orders)."
+  last month:
+    unless_any: []
+    interpretations:
+      - label: "Latest month in the data (December 2025)"
+        description: "Orders dated 2025-12-01..2025-12-31."
+      - label: "Calendar month before today"
+        description: "Relative to the current date; may be outside the data range."
+  best:
+    unless_any: ["by revenue", "by units", "by quantity", "most sold", "highest revenue", "by sales"]
+    interpretations:
+      - label: "By units sold"
+        description: "SUM(order_items.quantity)."
+      - label: "By gross revenue"
+        description: "SUM(quantity * unit_price * (1 - discount))."
+
+# Concepts this database cannot answer (used to detect unsupported questions without guessing).
+unsupported_concepts:
+  - terms: ["inventory", "stock level", "in stock", "warehouse"]
+    reason: "The database has no inventory or warehouse data."
+  - terms: ["marketing", "campaign", "ad spend", "advertising", "click"]
+    reason: "The database has no marketing or campaign data."
+  - terms: ["review", "rating", "star", "satisfaction", "nps"]
+    reason: "The database has no product reviews or customer satisfaction data."
+  - terms: ["weather", "temperature", "stock price", "exchange rate"]
+    reason: "External data is not available in this database."
+  - terms: ["website visits", "page views", "session", "bounce"]
+    reason: "The database has no web analytics data."
+  - terms: ["supplier", "vendor", "purchase order"]
+    reason: "The database has no supplier or procurement data."

@@ -1,0 +1,127 @@
+{
+ "session_id": "verify_2c04ba80",
+ "all_ok": true,
+ "checks": [
+  {
+   "check": "2_database_initialized_and_api_ready",
+   "ok": true,
+   "detail": {
+    "ready": true,
+    "reader_db": true,
+    "app_db": true,
+    "provider": "mock",
+    "provider_is_live": false
+   }
+  },
+  {
+   "check": "2b_schema_introspected",
+   "ok": true,
+   "detail": {
+    "tables": [
+     "categories",
+     "customers",
+     "employees",
+     "order_items",
+     "orders",
+     "payments",
+     "products",
+     "refunds",
+     "regions"
+    ]
+   }
+  },
+  {
+   "check": "3_frontend_reachable",
+   "ok": true,
+   "detail": "ok"
+  },
+  {
+   "check": "4_valid_question_expected_result",
+   "ok": true,
+   "detail": {
+    "decision": "answer",
+    "rows": [
+     [
+      389
+     ]
+    ],
+    "confidence": 1.0
+   }
+  },
+  {
+   "check": "5_destructive_query_blocked",
+   "ok": true,
+   "detail": {
+    "generated": [
+     "blocked",
+     "Blocked before execution: [write_operation] Only read-only SELECT queries are allowed (got DELETE)."
+    ],
+    "edited": [
+     "blocked",
+     "Blocked before execution: [write_operation] Only read-only SELECT queries are allowed (got DELETE)."
+    ],
+    "cancelled_before": [
+     [
+      135
+     ]
+    ],
+    "cancelled_after": [
+     [
+      135
+     ]
+    ]
+   }
+  },
+  {
+   "check": "6_ambiguous_question_clarification",
+   "ok": true,
+   "detail": {
+    "decision": "clarify",
+    "interpretations": [
+     "Gross revenue",
+     "Net revenue",
+     "Collected payments"
+    ]
+   }
+  },
+  {
+   "check": "7_invalid_schema_reference_repaired_or_rejected",
+   "ok": true,
+   "detail": {
+    "repaired": [
+     "answer",
+     1,
+     "SELECT ROUND(SUM(o.shipping_fee), 2) AS shipping FROM shop.orders o\nWHERE o.orde"
+    ],
+    "unrepairable": [
+     "blocked",
+     "Blocked before execution: [unknown_column] Unknown column: discount_rate. The column does not exist in the referenced tables. (after 1 repair attempt(s))"
+    ]
+   }
+  },
+  {
+   "check": "8_validation_warnings_and_confidence_details",
+   "ok": true,
+   "detail": {
+    "decision": "answer_with_warnings",
+    "score": 0.55,
+    "unavailable": [
+     "llm_back_translation"
+    ],
+    "warnings": [
+     "aggregation_fan_out: COUNT over orders rows while joined (one-to-many) to order_items may double count; use COUNT(DISTINCT ...) or aggregate before joining.",
+     "Independent alternative query produced different results; confidence capped at 0.55.",
+     "Validation warnings present; confidence capped at 0.65."
+    ]
+   }
+  },
+  {
+   "check": "history_and_feedback",
+   "ok": true,
+   "detail": {
+    "history_items": 9,
+    "feedback_status": 201
+   }
+  }
+ ]
+}

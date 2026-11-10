@@ -1,0 +1,754 @@
+{
+ "schema_name": "shop",
+ "tables": {
+  "categories": {
+   "name": "categories",
+   "schema_name": "shop",
+   "description": "Product categories; top-level categories have parent_category_id NULL.",
+   "columns": [
+    {
+     "name": "category_id",
+     "type": "INTEGER",
+     "nullable": false,
+     "primary_key": true,
+     "description": "Category identifier.",
+     "sensitive": false,
+     "categorical_values": []
+    },
+    {
+     "name": "name",
+     "type": "TEXT",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Category name.",
+     "sensitive": false,
+     "categorical_values": [
+      "Electronics",
+      "Home & Kitchen",
+      "Outdoors",
+      "Office",
+      "Laptops",
+      "Audio",
+      "Cookware",
+      "Camping",
+      "Furniture"
+     ]
+    },
+    {
+     "name": "parent_category_id",
+     "type": "INTEGER",
+     "nullable": true,
+     "primary_key": false,
+     "description": "Parent category (NULL for top-level).",
+     "sensitive": false,
+     "categorical_values": []
+    }
+   ],
+   "primary_key": [
+    "category_id"
+   ],
+   "foreign_keys": [
+    {
+     "column": "parent_category_id",
+     "ref_table": "categories",
+     "ref_column": "category_id",
+     "unique": false
+    }
+   ],
+   "row_estimate": 9
+  },
+  "customers": {
+   "name": "customers",
+   "schema_name": "shop",
+   "description": "Customers who placed orders. Contact details are restricted.",
+   "columns": [
+    {
+     "name": "customer_id",
+     "type": "INTEGER",
+     "nullable": false,
+     "primary_key": true,
+     "description": "Customer identifier.",
+     "sensitive": false,
+     "categorical_values": []
+    },
+    {
+     "name": "first_name",
+     "type": "TEXT",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Given name.",
+     "sensitive": false,
+     "categorical_values": []
+    },
+    {
+     "name": "last_name",
+     "type": "TEXT",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Family name.",
+     "sensitive": false,
+     "categorical_values": []
+    },
+    {
+     "name": "email",
+     "type": "TEXT",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Email address (SENSITIVE).",
+     "sensitive": true,
+     "categorical_values": []
+    },
+    {
+     "name": "phone",
+     "type": "TEXT",
+     "nullable": true,
+     "primary_key": false,
+     "description": "Phone number (SENSITIVE).",
+     "sensitive": true,
+     "categorical_values": []
+    },
+    {
+     "name": "city",
+     "type": "TEXT",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Customer city.",
+     "sensitive": false,
+     "categorical_values": []
+    },
+    {
+     "name": "country",
+     "type": "TEXT",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Customer country.",
+     "sensitive": false,
+     "categorical_values": [
+      "USA",
+      "Canada",
+      "Netherlands",
+      "Germany",
+      "Spain",
+      "France",
+      "UAE",
+      "Kuwait",
+      "Libya",
+      "Nigeria",
+      "Singapore",
+      "Australia",
+      "Japan",
+      "Colombia",
+      "Chile",
+      "Mexico"
+     ]
+    },
+    {
+     "name": "region_id",
+     "type": "INTEGER",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Region of the customer.",
+     "sensitive": false,
+     "categorical_values": []
+    },
+    {
+     "name": "segment",
+     "type": "TEXT",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Customer segment.",
+     "sensitive": false,
+     "categorical_values": [
+      "consumer",
+      "corporate",
+      "small_business"
+     ]
+    },
+    {
+     "name": "signup_date",
+     "type": "DATE",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Date the customer account was created.",
+     "sensitive": false,
+     "categorical_values": []
+    }
+   ],
+   "primary_key": [
+    "customer_id"
+   ],
+   "foreign_keys": [
+    {
+     "column": "region_id",
+     "ref_table": "regions",
+     "ref_column": "region_id",
+     "unique": false
+    }
+   ],
+   "row_estimate": 400
+  },
+  "employees": {
+   "name": "employees",
+   "schema_name": "shop",
+   "description": "Sales staff. Compensation is restricted.",
+   "columns": [
+    {
+     "name": "employee_id",
+     "type": "INTEGER",
+     "nullable": false,
+     "primary_key": true,
+     "description": "Employee identifier.",
+     "sensitive": false,
+     "categorical_values": []
+    },
+    {
+     "name": "full_name",
+     "type": "TEXT",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Employee name.",
+     "sensitive": false,
+     "categorical_values": []
+    },
+    {
+     "name": "job_title",
+     "type": "TEXT",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Job title.",
+     "sensitive": false,
+     "categorical_values": [
+      "Account Manager",
+      "Sales Associate",
+      "Regional Director",
+      "Support Specialist"
+     ]
+    },
+    {
+     "name": "region_id",
+     "type": "INTEGER",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Region the employee covers.",
+     "sensitive": false,
+     "categorical_values": []
+    },
+    {
+     "name": "salary",
+     "type": "NUMERIC(12, 2)",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Annual salary (SENSITIVE).",
+     "sensitive": true,
+     "categorical_values": []
+    },
+    {
+     "name": "hired_on",
+     "type": "DATE",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Hire date.",
+     "sensitive": false,
+     "categorical_values": []
+    }
+   ],
+   "primary_key": [
+    "employee_id"
+   ],
+   "foreign_keys": [
+    {
+     "column": "region_id",
+     "ref_table": "regions",
+     "ref_column": "region_id",
+     "unique": false
+    }
+   ],
+   "row_estimate": 25
+  },
+  "order_items": {
+   "name": "order_items",
+   "schema_name": "shop",
+   "description": "Order line items. Line revenue = quantity * unit_price * (1 - discount).",
+   "columns": [
+    {
+     "name": "order_item_id",
+     "type": "INTEGER",
+     "nullable": false,
+     "primary_key": true,
+     "description": "Line identifier.",
+     "sensitive": false,
+     "categorical_values": []
+    },
+    {
+     "name": "order_id",
+     "type": "INTEGER",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Parent order.",
+     "sensitive": false,
+     "categorical_values": []
+    },
+    {
+     "name": "product_id",
+     "type": "INTEGER",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Product sold.",
+     "sensitive": false,
+     "categorical_values": []
+    },
+    {
+     "name": "quantity",
+     "type": "INTEGER",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Units sold.",
+     "sensitive": false,
+     "categorical_values": []
+    },
+    {
+     "name": "unit_price",
+     "type": "NUMERIC(10, 2)",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Price per unit at time of sale (USD).",
+     "sensitive": false,
+     "categorical_values": []
+    },
+    {
+     "name": "discount",
+     "type": "NUMERIC(4, 2)",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Fractional discount 0..1.",
+     "sensitive": false,
+     "categorical_values": []
+    }
+   ],
+   "primary_key": [
+    "order_item_id"
+   ],
+   "foreign_keys": [
+    {
+     "column": "order_id",
+     "ref_table": "orders",
+     "ref_column": "order_id",
+     "unique": false
+    },
+    {
+     "column": "product_id",
+     "ref_table": "products",
+     "ref_column": "product_id",
+     "unique": false
+    }
+   ],
+   "row_estimate": 2620
+  },
+  "orders": {
+   "name": "orders",
+   "schema_name": "shop",
+   "description": "Customer orders, one row per order.",
+   "columns": [
+    {
+     "name": "order_id",
+     "type": "INTEGER",
+     "nullable": false,
+     "primary_key": true,
+     "description": "Order identifier.",
+     "sensitive": false,
+     "categorical_values": []
+    },
+    {
+     "name": "customer_id",
+     "type": "INTEGER",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Customer who placed the order.",
+     "sensitive": false,
+     "categorical_values": []
+    },
+    {
+     "name": "order_date",
+     "type": "DATE",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Date the order was placed.",
+     "sensitive": false,
+     "categorical_values": []
+    },
+    {
+     "name": "status",
+     "type": "TEXT",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Fulfilment status.",
+     "sensitive": false,
+     "categorical_values": [
+      "pending",
+      "shipped",
+      "delivered",
+      "cancelled",
+      "returned"
+     ]
+    },
+    {
+     "name": "channel",
+     "type": "TEXT",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Sales channel.",
+     "sensitive": false,
+     "categorical_values": [
+      "web",
+      "mobile",
+      "store"
+     ]
+    },
+    {
+     "name": "shipping_cost",
+     "type": "NUMERIC(10, 2)",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Shipping charged in USD.",
+     "sensitive": false,
+     "categorical_values": []
+    }
+   ],
+   "primary_key": [
+    "order_id"
+   ],
+   "foreign_keys": [
+    {
+     "column": "customer_id",
+     "ref_table": "customers",
+     "ref_column": "customer_id",
+     "unique": false
+    }
+   ],
+   "row_estimate": 1427
+  },
+  "payments": {
+   "name": "payments",
+   "schema_name": "shop",
+   "description": "Payments captured for non-cancelled orders.",
+   "columns": [
+    {
+     "name": "payment_id",
+     "type": "INTEGER",
+     "nullable": false,
+     "primary_key": true,
+     "description": "Payment identifier.",
+     "sensitive": false,
+     "categorical_values": []
+    },
+    {
+     "name": "order_id",
+     "type": "INTEGER",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Order paid.",
+     "sensitive": false,
+     "categorical_values": []
+    },
+    {
+     "name": "method",
+     "type": "TEXT",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Payment method.",
+     "sensitive": false,
+     "categorical_values": [
+      "card",
+      "paypal",
+      "bank_transfer",
+      "gift_card"
+     ]
+    },
+    {
+     "name": "amount",
+     "type": "NUMERIC(12, 2)",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Amount paid in USD, including shipping.",
+     "sensitive": false,
+     "categorical_values": []
+    },
+    {
+     "name": "paid_at",
+     "type": "DATE",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Payment date.",
+     "sensitive": false,
+     "categorical_values": []
+    }
+   ],
+   "primary_key": [
+    "payment_id"
+   ],
+   "foreign_keys": [
+    {
+     "column": "order_id",
+     "ref_table": "orders",
+     "ref_column": "order_id",
+     "unique": false
+    }
+   ],
+   "row_estimate": 1292
+  },
+  "products": {
+   "name": "products",
+   "schema_name": "shop",
+   "description": "Product catalog.",
+   "columns": [
+    {
+     "name": "product_id",
+     "type": "INTEGER",
+     "nullable": false,
+     "primary_key": true,
+     "description": "Product identifier.",
+     "sensitive": false,
+     "categorical_values": []
+    },
+    {
+     "name": "name",
+     "type": "TEXT",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Product name.",
+     "sensitive": false,
+     "categorical_values": []
+    },
+    {
+     "name": "category_id",
+     "type": "INTEGER",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Category of the product.",
+     "sensitive": false,
+     "categorical_values": []
+    },
+    {
+     "name": "unit_price",
+     "type": "NUMERIC(10, 2)",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Current list price in USD.",
+     "sensitive": false,
+     "categorical_values": []
+    },
+    {
+     "name": "unit_cost",
+     "type": "NUMERIC(10, 2)",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Unit cost in USD (for margin).",
+     "sensitive": false,
+     "categorical_values": []
+    },
+    {
+     "name": "is_active",
+     "type": "BOOLEAN",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Whether the product is currently sold.",
+     "sensitive": false,
+     "categorical_values": []
+    },
+    {
+     "name": "launched_on",
+     "type": "DATE",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Launch date.",
+     "sensitive": false,
+     "categorical_values": []
+    }
+   ],
+   "primary_key": [
+    "product_id"
+   ],
+   "foreign_keys": [
+    {
+     "column": "category_id",
+     "ref_table": "categories",
+     "ref_column": "category_id",
+     "unique": false
+    }
+   ],
+   "row_estimate": 37
+  },
+  "refunds": {
+   "name": "refunds",
+   "schema_name": "shop",
+   "description": "Refunds against orders (at most one per order).",
+   "columns": [
+    {
+     "name": "refund_id",
+     "type": "INTEGER",
+     "nullable": false,
+     "primary_key": true,
+     "description": "Refund identifier.",
+     "sensitive": false,
+     "categorical_values": []
+    },
+    {
+     "name": "order_id",
+     "type": "INTEGER",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Refunded order.",
+     "sensitive": false,
+     "categorical_values": []
+    },
+    {
+     "name": "amount",
+     "type": "NUMERIC(12, 2)",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Refunded amount in USD.",
+     "sensitive": false,
+     "categorical_values": []
+    },
+    {
+     "name": "reason",
+     "type": "TEXT",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Refund reason.",
+     "sensitive": false,
+     "categorical_values": [
+      "damaged",
+      "wrong_item",
+      "late_delivery",
+      "changed_mind"
+     ]
+    },
+    {
+     "name": "refunded_at",
+     "type": "DATE",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Refund date.",
+     "sensitive": false,
+     "categorical_values": []
+    }
+   ],
+   "primary_key": [
+    "refund_id"
+   ],
+   "foreign_keys": [
+    {
+     "column": "order_id",
+     "ref_table": "orders",
+     "ref_column": "order_id",
+     "unique": true
+    }
+   ],
+   "row_estimate": 151
+  },
+  "regions": {
+   "name": "regions",
+   "schema_name": "shop",
+   "description": "Sales regions.",
+   "columns": [
+    {
+     "name": "region_id",
+     "type": "INTEGER",
+     "nullable": false,
+     "primary_key": true,
+     "description": "Region identifier.",
+     "sensitive": false,
+     "categorical_values": []
+    },
+    {
+     "name": "name",
+     "type": "TEXT",
+     "nullable": false,
+     "primary_key": false,
+     "description": "Region name.",
+     "sensitive": false,
+     "categorical_values": [
+      "North America",
+      "Europe",
+      "Middle East & Africa",
+      "Asia Pacific",
+      "Latin America"
+     ]
+    }
+   ],
+   "primary_key": [
+    "region_id"
+   ],
+   "foreign_keys": [],
+   "row_estimate": 5
+  }
+ },
+ "glossary": [
+  {
+   "term": "gross revenue",
+   "definition": "SUM(order_items.quantity * order_items.unit_price * (1 - order_items.discount)) over non-cancelled orders.",
+   "tables": [
+    "order_items",
+    "orders"
+   ]
+  },
+  {
+   "term": "net revenue",
+   "definition": "Gross revenue minus SUM(refunds.amount) for the same orders.",
+   "tables": [
+    "order_items",
+    "orders",
+    "refunds"
+   ]
+  },
+  {
+   "term": "sales",
+   "definition": "Synonym of gross revenue unless stated otherwise.",
+   "tables": [
+    "order_items",
+    "orders"
+   ]
+  },
+  {
+   "term": "units sold",
+   "definition": "SUM(order_items.quantity) over non-cancelled orders.",
+   "tables": [
+    "order_items",
+    "orders"
+   ]
+  },
+  {
+   "term": "average order value",
+   "definition": "Average of payments.amount per paid order.",
+   "tables": [
+    "payments"
+   ]
+  },
+  {
+   "term": "margin",
+   "definition": "SUM(quantity * (unit_price * (1 - discount) - products.unit_cost)).",
+   "tables": [
+    "order_items",
+    "products"
+   ]
+  },
+  {
+   "term": "active product",
+   "definition": "products.is_active = TRUE.",
+   "tables": [
+    "products"
+   ]
+  },
+  {
+   "term": "refund rate",
+   "definition": "COUNT(DISTINCT refunds.order_id) / COUNT(DISTINCT orders.order_id) over non-cancelled orders.",
+   "tables": [
+    "orders",
+    "refunds"
+   ]
+  }
+ ],
+ "data_start": "2024-01-01",
+ "data_end": "2025-12-31"
+}

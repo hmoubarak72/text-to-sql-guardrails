@@ -1,0 +1,3 @@
+-r requirements-api.txt
+-r requirements-frontend.txt
+pytest==9.2.0

@@ -1,0 +1,12 @@
+# Runtime dependencies for the API, evaluation runner and tests (pinned versions verified in development).
+fastapi==0.162.2
+uvicorn[standard]==0.54.0
+SQLAlchemy==2.1.8
+psycopg[binary]==3.3.8
+pydantic==2.14.3
+pydantic-settings==2.16.2
+PyYAML==6.0.3
+httpx==0.28.1
+sqlglot==30.30.0
+anthropic==2.7.0
+openai==3.48.0

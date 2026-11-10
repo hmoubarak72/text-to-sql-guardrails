@@ -1,0 +1,66 @@
+name: text-to-sql-guardrails
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:?set in .env}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set in .env}
+      POSTGRES_DB: ${POSTGRES_DB:-t2s}
+      T2S_APP_PASSWORD: ${T2S_APP_PASSWORD:?set in .env}
+      T2S_READER_PASSWORD: ${T2S_READER_PASSWORD:?set in .env}
+      T2S_READER_STATEMENT_TIMEOUT_MS: ${STATEMENT_TIMEOUT_MS:-5000}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./db/init:/docker-entrypoint-initdb.d:ro    # runs only when the volume is empty
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB} && psql -U $${POSTGRES_USER} -d $${POSTGRES_DB} -tAc \"SELECT 1 FROM pg_roles WHERE rolname='t2s_reader'\" | grep -q 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+    ports:
+      - "127.0.0.1:5432:5432"
+    restart: unless-stopped
+
+  api:
+    build:
+      context: .
+      dockerfile: docker/api.Dockerfile
+    environment:
+      DB_HOST: db
+      DB_PORT: "5432"
+      DB_NAME: ${POSTGRES_DB:-t2s}
+      READER_PASSWORD: ${T2S_READER_PASSWORD}
+      APP_PASSWORD: ${T2S_APP_PASSWORD}
+      LLM_PROVIDER: ${LLM_PROVIDER:-mock}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      ANTHROPIC_MODEL: ${ANTHROPIC_MODEL:-claude-sonnet-5-5}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o}
+      MAX_RESULT_ROWS: ${MAX_RESULT_ROWS:-1000}
+      STATEMENT_TIMEOUT_MS: ${STATEMENT_TIMEOUT_MS:-5000}
+      MAX_PLAN_TOTAL_COST: ${MAX_PLAN_TOTAL_COST:-50000}
+      API_TOKEN: ${API_TOKEN:-}
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:8000:8000"
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/frontend.Dockerfile
+    environment:
+      API_URL: http://api:8000
+      API_TOKEN: ${API_TOKEN:-}
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:8501:8501"
+    restart: unless-stopped
+
+volumes:
+  pgdata:

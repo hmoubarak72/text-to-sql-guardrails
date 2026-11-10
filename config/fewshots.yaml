@@ -1,0 +1,48 @@
+# Human-verified few-shot examples (question -> SQL) specific to the shop schema.
+# These are deliberately NOT copies of evaluation questions, to avoid leaking the golden set.
+# Feedback is never auto-promoted into this file; see scripts/review_feedback.py.
+examples:
+  - question: "How many customers are in the corporate segment?"
+    sql: |
+      SELECT COUNT(*) AS corporate_customers
+      FROM shop.customers c
+      WHERE c.segment = 'corporate'
+    tables: [customers]
+  - question: "List the five most expensive active products with their category."
+    sql: |
+      SELECT p.name AS product, cat.name AS category, p.unit_price
+      FROM shop.products p
+      JOIN shop.categories cat ON cat.category_id = p.category_id
+      WHERE p.is_active = TRUE
+      ORDER BY p.unit_price DESC
+      LIMIT 5
+    tables: [products, categories]
+  - question: "What was gross revenue by sales channel in March 2025?"
+    sql: |
+      SELECT o.channel,
+             ROUND(SUM(oi.quantity * oi.unit_price * (1 - oi.discount)), 2) AS gross_revenue
+      FROM shop.orders o
+      JOIN shop.order_items oi ON oi.order_id = o.order_id
+      WHERE o.status <> 'cancelled'
+        AND o.order_date >= DATE '2025-03-01' AND o.order_date < DATE '2025-04-01'
+      GROUP BY o.channel
+      ORDER BY gross_revenue DESC
+    tables: [orders, order_items]
+  - question: "How many refunds were issued per reason in 2024?"
+    sql: |
+      SELECT r.reason, COUNT(*) AS refunds
+      FROM shop.refunds r
+      WHERE r.refunded_at >= DATE '2024-01-01' AND r.refunded_at < DATE '2025-01-01'
+      GROUP BY r.reason
+      ORDER BY refunds DESC
+    tables: [refunds]
+  - question: "Which region has the most distinct customers who placed an order?"
+    sql: |
+      SELECT rg.name AS region, COUNT(DISTINCT o.customer_id) AS ordering_customers
+      FROM shop.orders o
+      JOIN shop.customers c ON c.customer_id = o.customer_id
+      JOIN shop.regions rg ON rg.region_id = c.region_id
+      GROUP BY rg.name
+      ORDER BY ordering_customers DESC
+      LIMIT 1
+    tables: [orders, customers, regions]

@@ -1,0 +1,11 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.docx
+~$*
+.DS_Store
+_t2s_project_bundle.tar.gz
+eval/candidates/
+Claude outputs/

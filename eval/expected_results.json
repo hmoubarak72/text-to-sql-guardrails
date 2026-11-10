@@ -1,0 +1,1052 @@
+{
+ "L01": {
+  "columns": [
+   "customers"
+  ],
+  "rows": [
+   [
+    400
+   ]
+  ],
+  "ordered": false
+ },
+ "L02": {
+  "columns": [
+   "active_products"
+  ],
+  "rows": [
+   [
+    33
+   ]
+  ],
+  "ordered": false
+ },
+ "L03": {
+  "columns": [
+   "name"
+  ],
+  "rows": [
+   [
+    "Electronics"
+   ],
+   [
+    "Home & Kitchen"
+   ],
+   [
+    "Office"
+   ],
+   [
+    "Outdoors"
+   ]
+  ],
+  "ordered": true
+ },
+ "L04": {
+  "columns": [
+   "pending_orders"
+  ],
+  "rows": [
+   [
+    51
+   ]
+  ],
+  "ordered": false
+ },
+ "L05": {
+  "columns": [
+   "name",
+   "unit_price"
+  ],
+  "rows": [
+   [
+    "Aero 15 Laptop",
+    1499.0
+   ]
+  ],
+  "ordered": true
+ },
+ "L06": {
+  "columns": [
+   "customers"
+  ],
+  "rows": [
+   [
+    63
+   ]
+  ],
+  "ordered": false
+ },
+ "L07": {
+  "columns": [
+   "country"
+  ],
+  "rows": [
+   [
+    "Australia"
+   ],
+   [
+    "Canada"
+   ],
+   [
+    "Chile"
+   ],
+   [
+    "Colombia"
+   ],
+   [
+    "France"
+   ],
+   [
+    "Germany"
+   ],
+   [
+    "Japan"
+   ],
+   [
+    "Kuwait"
+   ],
+   [
+    "Libya"
+   ],
+   [
+    "Mexico"
+   ],
+   [
+    "Netherlands"
+   ],
+   [
+    "Nigeria"
+   ],
+   [
+    "Singapore"
+   ],
+   [
+    "Spain"
+   ],
+   [
+    "UAE"
+   ],
+   [
+    "USA"
+   ]
+  ],
+  "ordered": true
+ },
+ "L08": {
+  "columns": [
+   "unit_price"
+  ],
+  "rows": [
+   [
+    89.0
+   ]
+  ],
+  "ordered": false
+ },
+ "J01": {
+  "columns": [
+   "orders"
+  ],
+  "rows": [
+   [
+    389
+   ]
+  ],
+  "ordered": false
+ },
+ "J02": {
+  "columns": [
+   "customer_id",
+   "first_name",
+   "last_name",
+   "orders"
+  ],
+  "rows": [
+   [
+    3,
+    "Amira",
+    "Mansour",
+    10
+   ],
+   [
+    69,
+    "Tariq",
+    "Usman",
+    10
+   ],
+   [
+    70,
+    "Priya",
+    "Johnson",
+    10
+   ],
+   [
+    104,
+    "Sofia",
+    "Usman",
+    10
+   ],
+   [
+    118,
+    "Ben",
+    "Ito",
+    10
+   ]
+  ],
+  "ordered": true
+ },
+ "J03": {
+  "columns": [
+   "category",
+   "gross_revenue"
+  ],
+  "rows": [
+   [
+    "Laptops",
+    288246.25
+   ]
+  ],
+  "ordered": true
+ },
+ "J04": {
+  "columns": [
+   "units_sold"
+  ],
+  "rows": [
+   [
+    156
+   ]
+  ],
+  "ordered": false
+ },
+ "J05": {
+  "columns": [
+   "total_paid"
+  ],
+  "rows": [
+   [
+    21898.95
+   ]
+  ],
+  "ordered": false
+ },
+ "J06": {
+  "columns": [
+   "full_name",
+   "job_title",
+   "region"
+  ],
+  "rows": [
+   [
+    "Liam Abbott",
+    "Account Manager",
+    "Middle East & Africa"
+   ],
+   [
+    "Tariq Chen",
+    "Account Manager",
+    "Latin America"
+   ],
+   [
+    "Chloe Abbott",
+    "Regional Director",
+    "Asia Pacific"
+   ],
+   [
+    "Yusuf Garcia",
+    "Account Manager",
+    "Latin America"
+   ],
+   [
+    "Amira Ito",
+    "Sales Associate",
+    "Asia Pacific"
+   ],
+   [
+    "Hassan Williams",
+    "Regional Director",
+    "Europe"
+   ],
+   [
+    "Noah Khalil",
+    "Account Manager",
+    "Middle East & Africa"
+   ],
+   [
+    "Jamal Ito",
+    "Sales Associate",
+    "Europe"
+   ],
+   [
+    "Maya Okafor",
+    "Support Specialist",
+    "North America"
+   ],
+   [
+    "Hassan Patel",
+    "Account Manager",
+    "Middle East & Africa"
+   ],
+   [
+    "Tariq Ito",
+    "Regional Director",
+    "Latin America"
+   ],
+   [
+    "Priya Garcia",
+    "Regional Director",
+    "Asia Pacific"
+   ],
+   [
+    "Noah Farah",
+    "Account Manager",
+    "Europe"
+   ],
+   [
+    "Farid Garcia",
+    "Account Manager",
+    "Latin America"
+   ],
+   [
+    "Jamal Lopez",
+    "Account Manager",
+    "North America"
+   ],
+   [
+    "Omar Evans",
+    "Regional Director",
+    "Europe"
+   ],
+   [
+    "Victor Garcia",
+    "Sales Associate",
+    "North America"
+   ],
+   [
+    "Noah Garcia",
+    "Regional Director",
+    "North America"
+   ],
+   [
+    "Ben Abbott",
+    "Regional Director",
+    "Latin America"
+   ],
+   [
+    "Hassan Evans",
+    "Sales Associate",
+    "Latin America"
+   ],
+   [
+    "Sofia Abbott",
+    "Regional Director",
+    "North America"
+   ],
+   [
+    "Chloe Johnson",
+    "Account Manager",
+    "North America"
+   ],
+   [
+    "Farid Williams",
+    "Regional Director",
+    "Asia Pacific"
+   ],
+   [
+    "Ben Rossi",
+    "Regional Director",
+    "Middle East & Africa"
+   ],
+   [
+    "Hassan Farah",
+    "Sales Associate",
+    "Latin America"
+   ]
+  ],
+  "ordered": true
+ },
+ "J07": {
+  "columns": [
+   "refunds"
+  ],
+  "rows": [
+   [
+    62
+   ]
+  ],
+  "ordered": false
+ },
+ "J08": {
+  "columns": [
+   "segment",
+   "avg_shipping_cost"
+  ],
+  "rows": [
+   [
+    "consumer",
+    8.16
+   ],
+   [
+    "corporate",
+    8.01
+   ],
+   [
+    "small_business",
+    8.01
+   ]
+  ],
+  "ordered": true
+ },
+ "A01": {
+  "columns": [
+   "status",
+   "orders"
+  ],
+  "rows": [
+   [
+    "delivered",
+    971
+   ],
+   [
+    "shipped",
+    153
+   ],
+   [
+    "cancelled",
+    135
+   ],
+   [
+    "returned",
+    117
+   ],
+   [
+    "pending",
+    51
+   ]
+  ],
+  "ordered": true
+ },
+ "A02": {
+  "columns": [
+   "category",
+   "avg_unit_price"
+  ],
+  "rows": [
+   [
+    "Audio",
+    167.0
+   ],
+   [
+    "Camping",
+    151.0
+   ],
+   [
+    "Cookware",
+    111.4
+   ],
+   [
+    "Electronics",
+    151.5
+   ],
+   [
+    "Furniture",
+    289.0
+   ],
+   [
+    "Home & Kitchen",
+    199.0
+   ],
+   [
+    "Laptops",
+    1011.5
+   ],
+   [
+    "Office",
+    68.75
+   ],
+   [
+    "Outdoors",
+    82.33
+   ]
+  ],
+  "ordered": true
+ },
+ "A03": {
+  "columns": [
+   "gross_revenue"
+  ],
+  "rows": [
+   [
+    875560.6
+   ]
+  ],
+  "ordered": false
+ },
+ "A04": {
+  "columns": [
+   "method",
+   "collected"
+  ],
+  "rows": [
+   [
+    "card",
+    520620.12
+   ]
+  ],
+  "ordered": true
+ },
+ "A05": {
+  "columns": [
+   "average_order_value"
+  ],
+  "rows": [
+   [
+    685.86
+   ]
+  ],
+  "ordered": false
+ },
+ "A06": {
+  "columns": [
+   "customers"
+  ],
+  "rows": [
+   [
+    375
+   ]
+  ],
+  "ordered": false
+ },
+ "A07": {
+  "columns": [
+   "reason",
+   "refunded"
+  ],
+  "rows": [
+   [
+    "changed_mind",
+    32556.15
+   ],
+   [
+    "wrong_item",
+    19373.79
+   ],
+   [
+    "late_delivery",
+    17871.93
+   ],
+   [
+    "damaged",
+    15769.55
+   ]
+  ],
+  "ordered": true
+ },
+ "A08": {
+  "columns": [
+   "name",
+   "units"
+  ],
+  "rows": [
+   [
+    "Sleeping Bag",
+    126
+   ],
+   [
+    "Boom Speaker",
+    119
+   ],
+   [
+    "Chef Knife",
+    118
+   ]
+  ],
+  "ordered": true
+ },
+ "D01": {
+  "columns": [
+   "orders"
+  ],
+  "rows": [
+   [
+    438
+   ]
+  ],
+  "ordered": false
+ },
+ "D02": {
+  "columns": [
+   "month",
+   "gross_revenue"
+  ],
+  "rows": [
+   [
+    "2025-01-01",
+    24625.65
+   ],
+   [
+    "2025-02-01",
+    41451.9
+   ],
+   [
+    "2025-03-01",
+    44019.3
+   ],
+   [
+    "2025-04-01",
+    31039.25
+   ],
+   [
+    "2025-05-01",
+    39002.2
+   ],
+   [
+    "2025-06-01",
+    27015.0
+   ],
+   [
+    "2025-07-01",
+    42271.15
+   ],
+   [
+    "2025-08-01",
+    57170.75
+   ],
+   [
+    "2025-09-01",
+    87921.35
+   ],
+   [
+    "2025-10-01",
+    65188.5
+   ],
+   [
+    "2025-11-01",
+    79955.9
+   ],
+   [
+    "2025-12-01",
+    74415.5
+   ]
+  ],
+  "ordered": true
+ },
+ "D03": {
+  "columns": [
+   "customers"
+  ],
+  "rows": [
+   [
+    118
+   ]
+  ],
+  "ordered": false
+ },
+ "D04": {
+  "columns": [
+   "orders"
+  ],
+  "rows": [
+   [
+    64
+   ]
+  ],
+  "ordered": false
+ },
+ "D05": {
+  "columns": [
+   "refunded"
+  ],
+  "rows": [
+   [
+    23663.53
+   ]
+  ],
+  "ordered": false
+ },
+ "D06": {
+  "columns": [
+   "weekend_orders"
+  ],
+  "rows": [
+   [
+    127
+   ]
+  ],
+  "ordered": false
+ },
+ "D07": {
+  "columns": [
+   "year",
+   "orders"
+  ],
+  "rows": [
+   [
+    2024,
+    438
+   ],
+   [
+    2025,
+    989
+   ]
+  ],
+  "ordered": true
+ },
+ "C01F": {
+  "columns": [
+   "gross_revenue"
+  ],
+  "rows": [
+   [
+    614076.45
+   ]
+  ],
+  "ordered": false
+ },
+ "C02F": {
+  "columns": [
+   "customer_id",
+   "first_name",
+   "last_name",
+   "total_spend"
+  ],
+  "rows": [
+   [
+    372,
+    "Ben",
+    "Usman",
+    13069.92
+   ],
+   [
+    286,
+    "Tariq",
+    "Tanaka",
+    12194.32
+   ],
+   [
+    133,
+    "Omar",
+    "Barakat",
+    11384.73
+   ],
+   [
+    97,
+    "Liam",
+    "Barakat",
+    10064.81
+   ],
+   [
+    149,
+    "Tariq",
+    "Nakamura",
+    9723.65
+   ],
+   [
+    175,
+    "Victor",
+    "Barakat",
+    9471.71
+   ],
+   [
+    143,
+    "Sofia",
+    "Okafor",
+    9118.23
+   ],
+   [
+    92,
+    "Liam",
+    "Garcia",
+    8700.96
+   ],
+   [
+    312,
+    "Quinn",
+    "Nakamura",
+    8663.19
+   ],
+   [
+    344,
+    "Daniel",
+    "Farah",
+    8597.87
+   ]
+  ],
+  "ordered": true
+ },
+ "C03F": {
+  "columns": [
+   "orders"
+  ],
+  "rows": [
+   [
+    128
+   ]
+  ],
+  "ordered": false
+ },
+ "H01": {
+  "columns": [
+   "orders"
+  ],
+  "rows": [
+   [
+    989
+   ]
+  ],
+  "ordered": false
+ },
+ "H02": {
+  "columns": [
+   "gross_revenue"
+  ],
+  "rows": [
+   [
+    673748.9
+   ]
+  ],
+  "ordered": false
+ },
+ "H03": {
+  "columns": [
+   "method",
+   "avg_amount"
+  ],
+  "rows": [
+   [
+    "bank_transfer",
+    758.2
+   ],
+   [
+    "card",
+    669.18
+   ],
+   [
+    "gift_card",
+    709.95
+   ],
+   [
+    "paypal",
+    680.83
+   ]
+  ],
+  "ordered": true
+ },
+ "H04": {
+  "columns": [
+   "orders"
+  ],
+  "rows": [
+   [
+    375
+   ]
+  ],
+  "ordered": false
+ },
+ "H05": {
+  "columns": [
+   "orders"
+  ],
+  "rows": [
+   [
+    280
+   ]
+  ],
+  "ordered": false
+ },
+ "H06": {
+  "columns": [
+   "collected"
+  ],
+  "rows": [
+   [
+    264766.43
+   ]
+  ],
+  "ordered": false
+ },
+ "H07": {
+  "columns": [
+   "region",
+   "customers"
+  ],
+  "rows": [
+   [
+    "North America",
+    138
+   ]
+  ],
+  "ordered": true
+ },
+ "H08": {
+  "columns": [
+   "customers"
+  ],
+  "rows": [
+   [
+    147
+   ]
+  ],
+  "ordered": false
+ },
+ "H09": {
+  "columns": [
+   "gross_revenue"
+  ],
+  "rows": [
+   [
+    25818.45
+   ]
+  ],
+  "ordered": false
+ },
+ "H10": {
+  "columns": [
+   "order_id",
+   "order_date",
+   "status"
+  ],
+  "rows": [
+   [
+    1286,
+    "2025-12-31",
+    "shipped"
+   ],
+   [
+    1190,
+    "2025-12-31",
+    "shipped"
+   ],
+   [
+    1022,
+    "2025-12-31",
+    "returned"
+   ],
+   [
+    1005,
+    "2025-12-30",
+    "shipped"
+   ],
+   [
+    602,
+    "2025-12-30",
+    "shipped"
+   ]
+  ],
+  "ordered": true
+ },
+ "R01": {
+  "columns": [
+   "shipping"
+  ],
+  "rows": [
+   [
+    7984.52
+   ]
+  ],
+  "ordered": false
+ },
+ "R02": {
+  "columns": [
+   "payments"
+  ],
+  "rows": [
+   [
+    96
+   ]
+  ],
+  "ordered": false
+ },
+ "B01": {
+  "columns": [
+   "cancelled_orders"
+  ],
+  "rows": [
+   [
+    135
+   ]
+  ],
+  "ordered": false
+ },
+ "B02": {
+  "columns": [
+   "name",
+   "unit_price"
+  ],
+  "rows": [
+   [
+    "Boom Speaker",
+    89.0
+   ],
+   [
+    "Mini Speaker",
+    39.0
+   ]
+  ],
+  "ordered": true
+ },
+ "B03": {
+  "columns": [
+   "latest_order_date"
+  ],
+  "rows": [
+   [
+    "2025-12-31"
+   ]
+  ],
+  "ordered": false
+ },
+ "B04": {
+  "columns": [
+   "channel",
+   "orders"
+  ],
+  "rows": [
+   [
+    "web",
+    687
+   ],
+   [
+    "mobile",
+    543
+   ],
+   [
+    "store",
+    197
+   ]
+  ],
+  "ordered": true
+ },
+ "B05": {
+  "columns": [
+   "shipped_orders"
+  ],
+  "rows": [
+   [
+    153
+   ]
+  ],
+  "ordered": false
+ },
+ "B06": {
+  "columns": [
+   "order_id",
+   "order_date"
+  ],
+  "rows": [
+   [
+    2,
+    "2024-08-05"
+   ],
+   [
+    24,
+    "2025-04-26"
+   ],
+   [
+    29,
+    "2025-08-15"
+   ]
+  ],
+  "ordered": true
+ }
+}
